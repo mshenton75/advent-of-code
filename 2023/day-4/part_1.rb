@@ -13,7 +13,7 @@ Card = Struct.new(:winning_numbers, :your_numbers, keyword_init: true) do
 end
 
 def parse_card(card)
-  parse_nums = -> (nums) { nums.strip.split.map(&:to_i) }
+  parse_nums = ->(nums) { nums.strip.split.map(&:to_i) }
   numbers = card.split(':').last.split('|')
   Card.new(winning_numbers: parse_nums.(numbers.first), your_numbers: parse_nums.(numbers.last))
 end
