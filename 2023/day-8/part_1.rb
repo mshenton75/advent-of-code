@@ -21,14 +21,6 @@ def parse_line(line)
   [id, Node.new(id: id, left: left.strip, right: right.strip)]
 end
 
-def next_node(id:, direction:, count:)
-  return count if id == 'ZZZ'
-
-  node = network[id]
-  count += 1
-  next_node(id: node.send(direction), direction: directions[count % directions.length], count: count)
-end
-
 def navigate_network
   count = 0
   node = network['AAA']
