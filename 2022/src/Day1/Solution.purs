@@ -1,5 +1,6 @@
 module Day1.Solution
   ( part1
+  , part2
   )
   where
 
@@ -16,16 +17,29 @@ import Node.Encoding (Encoding(..))
 import Node.FS.Sync (readTextFile)
 
 part1 :: String
-part1 =  maximum sumCalories # maybe "No result" show 
+part1 = solve readFile # maybe "No result" show 
 
-  where
-    readFile = unsafePerformEffect $ readTextFile ASCII "src/Day1/Input.txt"
+  where 
+    solve = maximum <<< sumCalories <<< groupCalories [] <<< parse
 
-    lines = String.split (Pattern "\n") readFile 
+part2 :: String 
+part2 = solve readFile # show 
 
-    groupCalories grouped [] = grouped
-    groupCalories grouped remaining = do
-      let { init, rest } = Array.span (not <<< String.null) remaining
-      groupCalories (Array.snoc grouped (Array.mapMaybe Int.fromString init)) (Array.drop 1 rest)
+  where 
+    solve = sum <<< Array.take 3 <<< Array.reverse <<< Array.sort <<< sumCalories <<< groupCalories [] <<< parse 
+      
 
-    sumCalories = sum <$> groupCalories [] lines
+readFile :: String
+readFile = unsafePerformEffect $ readTextFile ASCII "src/Day1/Input.txt"
+
+parse :: String -> Array String 
+parse = String.split (Pattern "\n") 
+
+groupCalories :: Array (Array Int) -> Array String -> Array (Array Int)
+groupCalories grouped [] = grouped
+groupCalories grouped remaining = do
+  let { init, rest } = Array.span (not <<< String.null) remaining
+  groupCalories (Array.snoc grouped (Array.mapMaybe Int.fromString init)) (Array.drop 1 rest)
+
+sumCalories :: Array (Array Int) -> Array Int 
+sumCalories cals = sum <$> cals

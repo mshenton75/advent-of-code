@@ -13,7 +13,8 @@ import Node.Process (argv)
 main :: Effect Unit
 main = do
   args <- argv 
-  case Array.head (Array.drop 2 args) of 
-    Just "day-1" -> log Day1.part1 
-    Just arg -> error $ "Unknown argument: " <> arg
-    Nothing -> error "Please specify which day argument (i.e --node-args day-1)"
+  let userArgs = (Array.drop 2 args)
+  case Array.head userArgs, Array.last userArgs of 
+    Just "day-1", Just "part-1" -> log Day1.part1 
+    Just "day-1", Just "part-2" -> log Day1.part2
+    _, _ -> error "Unknown arguments"
