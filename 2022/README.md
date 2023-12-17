@@ -1,1 +1,1 @@
-To run: `spago run --node-args "day-1"`
+To run: `spago run --node-args "day-1"`. Change the argument with respect to the day you want to run.
