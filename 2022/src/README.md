@@ -1,0 +1,1 @@
+To run: `spago run --node-args "day-1"`
