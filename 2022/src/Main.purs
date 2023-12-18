@@ -5,6 +5,7 @@ import Prelude
 import Data.Array as Array
 import Data.Maybe (Maybe(..))
 import Day1.Solution as Day1
+import Day2.Solution as Day2
 import Effect (Effect)
 import Effect.Class.Console (error)
 import Effect.Console (log)
@@ -17,4 +18,5 @@ main = do
   case Array.head userArgs, Array.last userArgs of 
     Just "day-1", Just "part-1" -> log Day1.part1 
     Just "day-1", Just "part-2" -> log Day1.part2
+    Just "day-2", Just "part-1" -> log Day2.part1
     _, _ -> error "Unknown arguments"
