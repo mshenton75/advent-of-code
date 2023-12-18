@@ -13,8 +13,7 @@ import Data.String as String
 import Effect.Unsafe (unsafePerformEffect)
 import Node.Encoding (Encoding(..))
 import Node.FS.Sync (readTextFile)
-
-newtype File = File String
+import Types (File(..))
 
 data Shape = Rock | Paper | Scissors
 derive instance Eq Shape
