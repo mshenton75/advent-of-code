@@ -1,5 +1,5 @@
-module Day2.Solution
-  ( part1
+module Day2.Part1
+  ( solution
   )
   where
 
@@ -22,8 +22,8 @@ derive instance Eq Shape
 type Round = { yourMove :: Shape, opponentMove :: Shape }
 
 
-part1 :: String
-part1 = show $ sum $ scoreRound <$> parseFile readFile
+solution :: String
+solution = show $ sum $ scoreRound <$> parseFile readFile
 
 readFile :: File
 readFile = File $ unsafePerformEffect $ readTextFile ASCII "src/Day2/Input.txt"
