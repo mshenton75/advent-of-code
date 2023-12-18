@@ -53,7 +53,7 @@ priorities items = priority <$> items
   where 
     priority item
       | Just i <- Array.findIndex (eq item) alphabet = 1 + i
-      | Just i <-  Array.findIndex (eq item) alphabetUppercase = 27 + i
+      | Just i <- Array.findIndex (eq item) alphabetUppercase = 27 + i
       | otherwise = 0
 
 
