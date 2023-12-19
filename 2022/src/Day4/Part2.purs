@@ -1,4 +1,4 @@
-module Day4.Part1
+module Day4.Part2
   ( solution
   )
   where
@@ -47,7 +47,6 @@ countRedundantRanges = Array.length <<< Array.mapMaybe maybeReduntantRange
 
   where 
     maybeReduntantRange range@(first /\ last) 
-      | first.low <= last.low && first.high >= last.high = Just range
-      | last.low <= first.low && last.high >= first.high = Just range 
-      | otherwise = Nothing
+      | [] <- Array.intersect (Array.range first.low first.high) (Array.range last.low last.high) = Nothing 
+      | otherwise = Just range
   
