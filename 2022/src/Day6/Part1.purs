@@ -1,4 +1,4 @@
-module Day5.Part2
+module Day6.Part1
   ( solution
   )
   where
@@ -20,7 +20,7 @@ solution = show do
   numCharsBeforeKey datastream
 
 readFile :: File
-readFile = File $ unsafePerformEffect $ readTextFile ASCII "src/Day5/Input.txt"
+readFile = File $ unsafePerformEffect $ readTextFile ASCII "src/Day6/Input.txt"
 
 parseFile :: File -> Array Char 
 parseFile (File file) = toCharArray file
@@ -30,6 +30,6 @@ numCharsBeforeKey chars = processKeys 0
 
   where 
     processKeys idx
-      | 14 <- Set.size $ Set.fromFoldable $ Array.slice (idx - 14) idx chars = idx 
+      | 4 <- Set.size $ Set.fromFoldable $ Array.slice (idx - 4) idx chars = idx 
       | otherwise = processKeys (idx + 1)
 
