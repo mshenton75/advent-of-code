@@ -11,7 +11,7 @@ readFile' :: String
 readFile' = unsafePerformIO . readFile $ "Input.txt" :: String
 
 parseFile :: String -> [Int]
-parseFile file = mapMaybe readMaybe (lines file)
+parseFile = mapMaybe readMaybe . lines 
 
 numIncreasing :: [Int] ->  Int 
 numIncreasing nums = numIncreasingRecursive 1 0
