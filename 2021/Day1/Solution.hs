@@ -19,4 +19,5 @@ numIncreasing nums = numIncreasingRecursive 1 0
   where 
     numIncreasingRecursive idx count 
       | idx == length nums = count
-      | otherwise = numIncreasingRecursive (idx + 1) (count + if (nums !! idx) > (nums !! (idx - 1)) then 1 else 0)
+      | nums !! idx > nums !! (idx - 1) = numIncreasingRecursive (idx + 1) (count + 1)
+      | otherwise = numIncreasingRecursive (idx + 1) count
